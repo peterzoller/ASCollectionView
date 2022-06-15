@@ -95,6 +95,12 @@ class ASCollectionViewCell: UICollectionViewCell, ASDataSourceConfigurableCell
 			height: selfSizingConfig.canExceedCollectionHeight ? nil : collectionViewController.map { $0.collectionView.contentSize.height - 0.001 })
 	}
 
+    var navigationBarHidden: Bool
+    {
+        get { hostingController.navigationBarHidden }
+        set { hostingController.navigationBarHidden = newValue }
+    }
+
 	var disableSwiftUIDropInteraction: Bool
 	{
 		get { hostingController.disableSwiftUIDropInteraction }

@@ -58,6 +58,8 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 
 	internal var dodgeKeyboard: Bool = true
 
+    internal var hideNavigationBar: Bool = false
+
 	// MARK: Environment variables
 
 	// SwiftUI environment
@@ -241,7 +243,7 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 				cell.isSelected = self.isIndexPathSelected(indexPath)
 
 				cell.setContent(itemID: itemID, content: section.dataSource.content(forItemID: itemID))
-
+                cell.navigationBarHidden = self.parent.hideNavigationBar
 				cell.disableSwiftUIDropInteraction = section.dataSource.dropEnabled
 				cell.disableSwiftUIDragInteraction = section.dataSource.dragEnabled
 
@@ -262,7 +264,7 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 					print("ASCOLLECTIONVIEW WARNING: Your collection View layout requested supplementary of type: \(kind) and you have not provided any content, assuming empty view")
 				}
 				let reusableView = cv.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.supplementaryReuseID, for: indexPath) as! ASCollectionViewSupplementaryView //Force cast appropriate here
-				
+                reusableView.navigationBarHidden = self.parent.hideNavigationBar
 				guard let section = self.parent.sections[safe: indexPath.section] else { reusableView.setAsEmpty(supplementaryID: nil)
 					return reusableView
 				}
@@ -353,6 +355,7 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 //			else
 //			{
 			cell.setContent(itemID: itemID, content: section.dataSource.content(forItemID: itemID))
+            cell.navigationBarHidden = self.parent.hideNavigationBar
 			cell.disableSwiftUIDropInteraction = section.dataSource.dropEnabled
 			cell.disableSwiftUIDragInteraction = section.dataSource.dragEnabled
 //			}

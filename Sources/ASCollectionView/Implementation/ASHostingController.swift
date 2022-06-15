@@ -50,6 +50,12 @@ internal class ASHostingController<ViewType: View>: ASHostingControllerProtocol
 		return uiHostingController as UIViewController
 	}
 
+    var navigationBarHidden: Bool
+    {
+        get { uiHostingController.navigationController?.navigationBar.isHidden == true }
+        set { uiHostingController.navigationController?.navigationBar.isHidden = newValue }
+    }
+
 	var disableSwiftUIDropInteraction: Bool
 	{
 		get { uiHostingController.shouldDisableDrop }

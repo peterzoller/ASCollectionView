@@ -94,6 +94,12 @@ class ASCollectionViewSupplementaryView: UICollectionReusableView, ASDataSourceC
 		return size
 	}
 
+    var navigationBarHidden: Bool
+    {
+        get { hostingController.navigationBarHidden }
+        set { hostingController.navigationBarHidden = newValue }
+    }
+
 	var maxSizeForSelfSizing: ASOptionalSize
 	{
 		ASOptionalSize(

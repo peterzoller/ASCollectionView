@@ -164,6 +164,13 @@ public extension ASCollectionView
 		this.dodgeKeyboard = avoidKeyboard
 		return this
 	}
+
+    func shouldHideNavigationBar(_ hideNavigationBar: Bool) -> Self
+    {
+        var this = self
+        this.hideNavigationBar = hideNavigationBar
+        return this
+    }
 }
 
 // MARK: PUBLIC layout modifier functions
